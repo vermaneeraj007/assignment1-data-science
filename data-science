@@ -1,0 +1,747 @@
+
+1. Write a Python program to reverse a string without using any built-in string reversal functions.
+ans ---- > 
+  def reverse_string(string):
+    reversed_string = ""
+    for i in range(len(string) - 1, -1, -1):
+        reversed_string += string[i]
+    return reversed_string
+
+
+input_string = input("Enter a string: ")
+reversed_string = reverse_string(input_string)
+print("Reversed string:", reversed_string)
+
+
+
+2. Implement a function to check if a given string is a palindrome.
+ans ------->
+  def is_palindrome(string):
+    # Remove spaces and convert to lowercase
+    string = string.replace(" ", "").lower()
+
+    # Check if the string is equal to its reverse
+    return string == string[::-1]
+input_string = input("Enter a string: ")
+if is_palindrome(input_string):
+    print("The string is a palindrome.")
+else:
+    print("The string is not a palindrome.")
+
+
+
+
+3. Write a program to find the largest element in a given list.
+ans ------>
+  def find_largest_element(lst):
+    if not lst:
+        return None
+
+    largest = lst[0]  # Assume the first element is the largest
+
+    for element in lst:
+        if element > largest:
+            largest = element
+
+    return largest
+
+# Example usage
+input_list = [10, 5, 7, 14, 2, 8]
+largest_element = find_largest_element(input_list)
+print("Largest element:", largest_element)
+
+
+4. Implement a function to count the occurrence of each element in a list.
+def count_occurrences(lst):
+    occurrence_count = {}
+    for element in lst:
+        if element in occurrence_count:
+            occurrence_count[element] += 1
+        else:
+            occurrence_count[element] = 1
+    return occurrence_count
+
+# Example usage
+input_list = [1, 2, 3, 2, 4, 1, 5, 1, 3]
+occurrence_count = count_occurrences(input_list)
+print("Occurrence count:", occurrence_count)
+
+
+
+5. Write a Python program to find the second largest number in a list.
+def find_second_largest(lst):
+    if len(lst) < 2:
+        return None
+
+    largest = max(lst[0], lst[1])
+    second_largest = min(lst[0], lst[1])
+
+    for i in range(2, len(lst)):
+        if lst[i] > largest:
+            second_largest = largest
+            largest = lst[i]
+        elif lst[i] > second_largest and lst[i] != largest:
+            second_largest = lst[i]
+
+    return second_largest
+
+# Example usage
+input_list = [10, 5, 7, 14, 2, 8]
+second_largest = find_second_largest(input_list)
+
+if second_largest is not None:
+    print("Second largest number:", second_largest)
+else:
+    print("There is no second largest number in the list.")
+
+
+
+      
+6. Implement a function to remove duplicate elements from a list.
+
+def remove_duplicates(lst):
+    return list(set(lst))
+
+# Example usage
+input_list = [1, 2, 3, 2, 4, 1, 5, 1, 3]
+deduplicated_list = remove_duplicates(input_list)
+print("Deduplicated list:", deduplicated_list)
+
+
+
+7. Write a program to calculate the factorial of a given number.
+def factorial(n):
+    if n < 0:
+        return None
+    if n == 0:
+        return 1
+
+    result = 1
+    for i in range(1, n + 1):
+        result *= i
+
+    return result
+
+# Example usage
+input_number = int(input("Enter a number: "))
+factorial_result = factorial(input_number)
+
+if factorial_result is not None:
+    print("Factorial:", factorial_result)
+else:
+    print("Factorial is undefined for negative numbers.")
+
+
+          
+
+8. Implement a function to check if a given number is prime.
+def is_prime(number):
+    if number < 2:
+        return False
+
+    for i in range(2, int(number ** 0.5) + 1):
+        if number % i == 0:
+            return False
+
+    return True
+
+# Example usage
+input_number = int(input("Enter a number: "))
+if is_prime(input_number):
+    print("The number is prime.")
+else:
+    print("The number is not prime.")
+
+
+          
+9. Write a Python program to sort a list of integers in ascending order.
+def sort_list(lst):
+    return sorted(lst)
+
+# Example usage
+input_list = [10, 5, 7, 14, 2, 8]
+sorted_list = sort_list(input_list)
+print("Sorted list:", sorted_list)
+
+
+10. Implement a function to find the sum of all numbers in a list.
+
+def find_sum(lst):
+    total = 0
+    for number in lst:
+        total += number
+    return total
+
+# Example usage
+input_list = [1, 2, 3, 4, 5]
+sum_result = find_sum(input_list)
+print("Sum:", sum_result)
+
+
+11. Write a program to find the common elements between two lists.
+def find_common_elements(list1, list2):
+    return list(set(list1) & set(list2))
+
+# Example usage
+list1 = [1, 2, 3, 4, 5]
+list2 = [4, 5, 6, 7, 8]
+common_elements = find_common_elements(list1, list2)
+print("Common elements:", common_elements)
+
+
+
+12. Implement a function to check if a given string is an anagram of another string.
+
+def is_anagram(string1, string2):
+    string1 = string1.lower().replace(" ", "")
+    string2 = string2.lower().replace(" ", "")
+    
+    return sorted(string1) == sorted(string2)
+
+# Example usage
+input_string1 = input("Enter the first string: ")
+input_string2 = input("Enter the second string: ")
+
+if is_anagram(input_string1, input_string2):
+    print("The strings are anagrams.")
+else:
+    print("The strings are not anagrams.")
+
+
+
+13. Write a Python program to generate all permutations of a given string.
+def generate_permutations(string):
+    if len(string) == 0:
+        return []
+
+    if len(string) == 1:
+        return [string]
+
+    permutations = []
+    for i in range(len(string)):
+        current_char = string[i]
+        remaining_chars = string[:i] + string[i+1:]
+        for perm in generate_permutations(remaining_chars):
+            permutations.append(current_char + perm)
+
+    return permutations
+
+# Example usage
+input_string = input("Enter a string: ")
+permutations = generate_permutations(input_string)
+print("Permutations:")
+for perm in permutations:
+    print(perm)
+
+
+
+14. Implement a function to calculate the Fibonacci sequence up to a given number of terms.
+
+def fibonacci_sequence(n):
+    if n <= 0:
+        return []
+
+    sequence = [0, 1]
+
+    while len(sequence) < n:
+        next_number = sequence[-1] + sequence[-2]
+        sequence.append(next_number)
+
+    return sequence
+
+# Example usage
+num_terms = int(input("Enter the number of terms: "))
+fibonacci_seq = fibonacci_sequence(num_terms)
+print("Fibonacci sequence:")
+print(fibonacci_seq)
+
+
+
+15. Write a program to find the median of a list of numbers.
+def find_median(numbers):
+    numbers.sort()
+    n = len(numbers)
+
+    if n % 2 == 0:
+        mid1 = numbers[n // 2]
+        mid2 = numbers[n // 2 - 1]
+        median = (mid1 + mid2) / 2
+    else:
+        median = numbers[n // 2]
+
+    return median
+
+# Example usage
+input_numbers = [4, 2, 9, 7, 5, 1, 8, 3, 6]
+median = find_median(input_numbers)
+print("Median:", median)
+
+
+
+
+16. Implement a function to check if a given list is sorted in non-decreasing order.
+def is_sorted(lst):
+    for i in range(len(lst) - 1):
+        if lst[i] > lst[i + 1]:
+            return False
+    return True
+
+# Example usage
+input_list = [1, 2, 3, 4, 5]
+if is_sorted(input_list):
+    print("The list is sorted in non-decreasing order.")
+else:
+    print("The list is not sorted in non-decreasing order.")
+
+
+
+17. Write a Python program to find the intersection of two lists.
+
+def find_intersection(list1, list2):
+    return list(set(list1) & set(list2))
+
+# Example usage
+list1 = [1, 2, 3, 4, 5]
+list2 = [4, 5, 6, 7, 8]
+intersection = find_intersection(list1, list2)
+print("Intersection:", intersection)
+
+
+
+
+18. Implement a function to find the maximum subarray sum in a given list.
+def find_maximum_subarray_sum(lst):
+    if not lst:
+        return 0
+
+    current_sum = max_sum = lst[0]
+    for num in lst[1:]:
+        current_sum = max(num, current_sum + num)
+        max_sum = max(max_sum, current_sum)
+
+    return max_sum
+
+# Example usage
+input_list = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
+maximum_subarray_sum = find_maximum_subarray_sum(input_list)
+print("Maximum subarray sum:", maximum_subarray_sum)
+
+
+
+
+19. Write a program to remove all vowels from a given string.
+def remove_vowels(string):
+    vowels = "aeiouAEIOU"
+    vowels_removed = ""
+
+    for char in string:
+        if char not in vowels:
+            vowels_removed += char
+
+    return vowels_removed
+
+# Example usage
+input_string = input("Enter a string: ")
+string_without_vowels = remove_vowels(input_string)
+print("String without vowels:", string_without_vowels)
+
+
+
+
+20. Implement a function to reverse the order of words in a given sentence.
+def reverse_sentence(sentence):
+    words = sentence.split()
+    reversed_words = words[::-1]
+    reversed_sentence = ' '.join(reversed_words)
+    return reversed_sentence
+
+# Example usage
+input_sentence = input("Enter a sentence: ")
+reversed_sentence = reverse_sentence(input_sentence)
+print("Reversed sentence:", reversed_sentence)
+
+
+
+21. Write a Python program to check if two strings are anagrams of each other.
+def are_anagrams(string1, string2):
+    string1 = string1.lower().replace(" ", "")
+    string2 = string2.lower().replace(" ", "")
+    
+    return sorted(string1) == sorted(string2)
+
+# Example usage
+input_string1 = input("Enter the first string: ")
+input_string2 = input("Enter the second string: ")
+
+if are_anagrams(input_string1, input_string2):
+    print("The strings are anagrams.")
+else:
+    print("The strings are not anagrams.")
+
+
+                         
+
+                         
+22. Implement a function to find the first non-repeating character in a string.
+def find_first_non_repeating_character(string):
+    char_count = {}
+
+    for char in string:
+        if char in char_count:
+            char_count[char] += 1
+        else:
+            char_count[char] = 1
+
+    for char in string:
+        if char_count[char] == 1:
+            return char
+
+    return None
+
+# Example usage
+input_string = input("Enter a string: ")
+non_repeating_char = find_first_non_repeating_character(input_string)
+
+if non_repeating_char is not None:
+    print("First non-repeating character:", non_repeating_char)
+else:
+    print("There is no non-repeating character in the string.")
+
+
+
+
+23. Write a program to find the prime factors of a given number.
+def find_prime_factors(number):
+    factors = []
+    divisor = 2
+
+    while divisor <= number:
+        if number % divisor == 0:
+            factors.append(divisor)
+            number //= divisor
+        else:
+            divisor += 1
+
+    return factors
+
+# Example usage
+input_number = int(input("Enter a number: "))
+prime_factors = find_prime_factors(input_number)
+print("Prime factors:", prime_factors)
+
+
+
+
+
+24. Implement a function to check if a given number is a power of two.
+def is_power_of_two(number):
+    if number <= 0:
+        return False
+    return (number & (number - 1)) == 0
+
+# Example usage
+input_number = int(input("Enter a number: "))
+if is_power_of_two(input_number):
+    print("The number is a power of two.")
+else:
+    print("The number is not a power of two.")
+
+
+
+25. Write a Python program to merge two sorted lists into a single sorted list.
+def merge_sorted_lists(list1, list2):
+    merged_list = []
+    i, j = 0, 0
+
+    while i < len(list1) and j < len(list2):
+        if list1[i] < list2[j]:
+            merged_list.append(list1[i])
+            i += 1
+        else:
+            merged_list.append(list2[j])
+            j += 1
+
+    # Add remaining elements from list1, if any
+    while i < len(list1):
+        merged_list.append(list1[i])
+        i += 1
+
+    # Add remaining elements from list2, if any
+    while j < len(list2):
+        merged_list.append(list2[j])
+        j += 1
+
+    return merged_list
+
+# Example usage
+list1 = [1, 3, 5, 7]
+list2 = [2, 4, 6, 8]
+merged_list = merge_sorted_lists(list1, list2)
+print("Merged list:", merged_list)
+
+
+
+26. Implement a function to find the mode of a list of numbers.
+from collections import Counter
+
+def find_mode(numbers):
+    counter = Counter(numbers)
+    max_count = max(counter.values())
+    mode = [num for num, count in counter.items() if count == max_count]
+    return mode
+
+# Example usage
+input_numbers = [1, 2, 3, 2, 4, 3, 5, 3]
+mode = find_mode(input_numbers)
+
+if len(mode) == 1:
+    print("Mode:", mode[0])
+else:
+    print("Multiple modes:", mode)
+
+
+
+27. Write a program to find the greatest common divisor (GCD) of two numbers.
+def find_gcd(a, b):
+    while b != 0:
+        a, b = b, a % b
+    return a
+
+# Example usage
+num1 = int(input("Enter the first number: "))
+num2 = int(input("Enter the second number: "))
+
+gcd = find_gcd(num1, num2)
+print("GCD:", gcd)
+
+
+
+
+28. Implement a function to calculate the square root of a given number.
+def calculate_square_root(number):
+    if number < 0:
+        raise ValueError("Square root is not defined for negative numbers.")
+
+    if number == 0:
+        return 0
+
+    approx = number / 2
+    while True:
+        better_approx = (approx + number / approx) / 2
+        if abs(approx - better_approx) < 1e-9:
+            return better_approx
+        approx = better_approx
+
+# Example usage
+input_number = float(input("Enter a number: "))
+square_root = calculate_square_root(input_number)
+print("Square root:", square_root)
+
+                         
+                         
+29. Write a Python program to check if a given string is a valid palindrome ignoring non-alphanumeric characters.
+def is_valid_palindrome(string):
+    alphanumeric_string = ''.join(char.lower() for char in string if char.isalnum())
+    reversed_string = alphanumeric_string[::-1]
+    return alphanumeric_string == reversed_string
+
+# Example usage
+input_string = input("Enter a string: ")
+if is_valid_palindrome(input_string):
+    print("The string is a valid palindrome.")
+else:
+    print("The string is not a valid palindrome.")
+
+
+                         
+
+
+30. Implement a function to find the minimum element in a rotated sorted list.
+def find_minimum_rotated_sorted(nums):
+    left = 0
+    right = len(nums) - 1
+
+    while left < right:
+        mid = left + (right - left) // 2
+
+        if nums[mid] > nums[right]:
+            left = mid + 1
+        else:
+            right = mid
+
+    return nums[left]
+
+# Example usage
+input_list = [4, 5, 6, 7, 0, 1, 2]
+minimum = find_minimum_rotated_sorted(input_list)
+print("Minimum element:", minimum)
+
+
+
+31. Write a program to find the sum of all even numbers in a list.
+def sum_of_even_numbers(numbers):
+    even_sum = 0
+    for num in numbers:
+        if num % 2 == 0:
+            even_sum += num
+    return even_sum
+
+# Example usage
+input_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+sum_of_evens = sum_of_even_numbers(input_list)
+print("Sum of even numbers:", sum_of_evens)
+
+
+                         
+32. Implement a function to calculate the power of a number using recursion.
+def calculate_power(base, exponent):
+    if exponent == 0:
+        return 1
+    elif exponent < 0:
+        return 1 / calculate_power(base, -exponent)
+    else:
+        return base * calculate_power(base, exponent - 1)
+
+# Example usage
+base = float(input("Enter the base: "))
+exponent = int(input("Enter the exponent: "))
+
+power = calculate_power(base, exponent)
+print("Result:", power)
+
+
+
+                         
+33. Write a Python program to remove duplicates from a list while preserving the order.
+def remove_duplicates_preserve_order(lst):
+    unique_list = []
+    seen_elements = set()
+
+    for element in lst:
+        if element not in seen_elements:
+            unique_list.append(element)
+            seen_elements.add(element)
+
+    return unique_list
+
+# Example usage
+input_list = [1, 2, 3, 2, 4, 3, 5, 3]
+list_without_duplicates = remove_duplicates_preserve_order(input_list)
+print("List without duplicates:", list_without_duplicates)
+
+
+
+                         
+34. Implement a function to find the longest common prefix among a list of strings.
+def find_longest_common_prefix(strings):
+    if not strings:
+        return ""
+
+    shortest_string = min(strings, key=len)
+    prefix = ""
+
+    for i in range(len(shortest_string)):
+        current_char = shortest_string[i]
+
+        for string in strings:
+            if string[i] != current_char:
+                return prefix
+
+        prefix += current_char
+
+    return prefix
+
+# Example usage
+input_strings = ["flower", "flow", "flight"]
+common_prefix = find_longest_common_prefix(input_strings)
+print("Longest common prefix:", common_prefix)
+
+
+
+                         
+35. Write a program to check if a given number is a perfect square.
+def is_perfect_square(number):
+    if number < 0:
+        return False
+
+    root = int(number ** 0.5)
+    return root * root == number
+
+# Example usage
+input_number = int(input("Enter a number: "))
+if is_perfect_square(input_number):
+    print("The number is a perfect square.")
+else:
+    print("The number is not a perfect square.")
+
+
+
+                         
+36. Implement a function to calculate the product of all elements in a list.
+def calculate_product(numbers):
+    product = 1
+    for num in numbers:
+        product *= num
+    return product
+
+# Example usage
+input_list = [1, 2, 3, 4, 5]
+product = calculate_product(input_list)
+print("Product of elements:", product)
+
+
+
+                         
+37. Write a Python program to reverse the order of words in a sentence while preserving the word order.
+def reverse_word_order(sentence):
+    words = sentence.split()
+    reversed_sentence = ' '.join(reversed(words))
+    return reversed_sentence
+
+# Example usage
+input_sentence = input("Enter a sentence: ")
+reversed_sentence = reverse_word_order(input_sentence)
+print("Reversed sentence:", reversed_sentence)
+
+
+                         
+38. Implement a function to find the missing number in a given list of consecutive numbers.
+def find_missing_number(numbers):
+    n = len(numbers) + 1
+    expected_sum = n * (n + 1) // 2
+    actual_sum = sum(numbers)
+    missing_number = expected_sum - actual_sum
+    return missing_number
+
+# Example usage
+input_list = [1, 2, 4, 5, 6]
+missing_number = find_missing_number(input_list)
+print("Missing number:", missing_number)
+
+
+
+                         
+39. Write a program to find the sum of digits of a given number.
+def sum_of_digits(number):
+    digit_sum = 0
+    while number > 0:
+        digit = number % 10
+        digit_sum += digit
+        number //= 10
+    return digit_sum
+
+# Example usage
+input_number = int(input("Enter a number: "))
+sum_of_digits = sum_of_digits(input_number)
+print("Sum of digits:", sum_of_digits)
+
+
+
+
+
+
+
+
+
+                         
+                         
